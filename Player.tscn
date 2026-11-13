@@ -1,0 +1,155 @@
+[gd_scene format=3 uid="uid://cuwteei70sad4"]
+
+[ext_resource type="Script" uid="uid://cahmb2gl03xop" path="res://player.gd" id="1_kpjcp"]
+[ext_resource type="Texture2D" uid="uid://cpg6dyh328xfg" path="res://Really, no like REALLY fat panda sprite sheet.png" id="1_xhfnw"]
+
+[sub_resource type="Animation" id="Animation_kpjcp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_5ncpa"]
+resource_name = "back_idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [25, 26]
+}
+
+[sub_resource type="Animation" id="Animation_kne1u"]
+resource_name = "back_walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [10, 11, 12]
+}
+
+[sub_resource type="Animation" id="Animation_e80uo"]
+resource_name = "front_idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_cxr5p"]
+resource_name = "front_walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_tdg3f"]
+resource_name = "side_idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [20, 21]
+}
+
+[sub_resource type="Animation" id="Animation_dtqjt"]
+resource_name = "side_walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [15, 16, 17]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ncpa"]
+_data = {
+&"RESET": SubResource("Animation_kpjcp"),
+&"back_idle": SubResource("Animation_5ncpa"),
+&"back_walk": SubResource("Animation_kne1u"),
+&"front_idle": SubResource("Animation_e80uo"),
+&"front_walk": SubResource("Animation_cxr5p"),
+&"side_idle": SubResource("Animation_tdg3f"),
+&"side_walk": SubResource("Animation_dtqjt")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4hqrp"]
+
+[node name="Player" type="CharacterBody2D" unique_id=257397239 node_paths=PackedStringArray("animation_player", "sprite")]
+y_sort_enabled = true
+script = ExtResource("1_kpjcp")
+animation_player = NodePath("AnimationPlayer")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1757918855]
+y_sort_enabled = true
+texture = ExtResource("1_xhfnw")
+hframes = 5
+vframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=99396623]
+libraries/ = SubResource("AnimationLibrary_5ncpa")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1020621717]
+zoom = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1492385028]
+shape = SubResource("RectangleShape2D_4hqrp")
